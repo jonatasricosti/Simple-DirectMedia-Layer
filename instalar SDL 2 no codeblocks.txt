@@ -1,0 +1,131 @@
+i686-w64-mingw32    pasta do SDL2 para 32bits
+x86_64-w64-mingw32  pasta dos SDL2 para 64bits
+
+crie uma pasta chamada SDL2 no disco local c
+depois copie todo o conteudo de i686-w64-mingw32 para pasta SDL2
+
+
+abra o CodeBlocks
+clique em Create a new project -> Empty project -> Next
+Project title: digite o nome do projeto -> Next-> Finish
+
+clique com o botão direito do mouse no nome do projeto
+Properties -> Project build options -> Linker settings
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDL2main -lSDL2
+-lSDL2_image
+-lSDL2_mixer
+-lSDL2_ttf
+
+
+depois clique em
+Search directories
+
+Compiler
+adicione:
+C:\SDL2\include\SDL2
+keep this as as relative path?
+clique em não
+
+Linker
+adicione:
+C:\SDL2\lib
+keep this as as relative path?
+clique em não
+
+vá em File -> New -> File -> C/C++ source -> Next ->Next
+marque Debug e Release
+em Filename with full path: dê um nome ao arquivo exemplo main.cpp
+
+teste esse código
+#include <SDL.h>
+#include <stdio.h>
+
+//Screen dimension constants
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+
+int main( int argc, char* args[] )
+{
+	//The window we'll be rendering to
+	SDL_Window* window = NULL;
+	
+	//The surface contained by the window
+	SDL_Surface* screenSurface = NULL;
+
+	//Initialize SDL
+	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	{
+		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+	}
+	else
+	{
+		//Create window
+		window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		if( window == NULL )
+		{
+			printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
+		}
+		else
+		{
+			//Get window surface
+			screenSurface = SDL_GetWindowSurface( window );
+
+			//Fill the surface white
+			SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+			
+			//Update the surface
+			SDL_UpdateWindowSurface( window );
+
+			//Wait two seconds
+			SDL_Delay( 2000 );
+		}
+	}
+
+	//Destroy window
+	SDL_DestroyWindow( window );
+
+	//Quit SDL subsystems
+	SDL_Quit();
+
+	return 0;
+}
+
+copie a SDL.dll para a pasta do projeto
+
+///////////////////////////////////////////////////////////////////////////////////////////
+como instalar o SDL_image-devel-1.2.12-VC
+
+entre na pasta "SDL_image-1.2.12\include" copie SDL_image.h para a pasta include\SDL do SDL
+
+entre na pasta "SDL_image-1.2.12\lib\x86" copie SDL_image.lib para a pasta lib do SDL
+ainda na pasta "SDL_image-1.2.12\lib\x86" copie todas as dlls para a pasta bin do SDL
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDLmain -lSDL
+-lSDL2_image
+
+///////////////////////////////////////////////////////////////////////////////////////////
+como instalar o SDL_mixer-devel-1.2.12-VC
+
+entre na pasta "SDL_mixer-1.2.12\include" copie SDL_mixer.h para a pasta include\SDL do SDL
+
+entre na pasta "SDL_mixer-1.2.12\lib\x86" copie SDL_mixer.lib para a pasta lib do SDL
+ainda na pasta "SDL_mixer-1.2.12\lib\x86" copie todas as dlls para a pasta bin do SDL
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDLmain -lSDL
+-lSDL2_mixer
+
+///////////////////////////////////////////////////////////////////////////////////////////
+como instalar o SDL_ttf-devel-2.0.11-VC
+
+entre na pasta "SDL_ttf-2.0.11\include" copie SDL_ttf.h para a pasta include\SDL do SDL
+
+entre na pasta "SDL_ttf-2.0.11\lib\x86" copie SDL_ttf.lib para a pasta lib do SDL
+ainda na pasta "SDL_ttf-2.0.11\lib\x86" copie todas as dlls para a pasta bin do SDL
+zlib1.dll vai ser trocado

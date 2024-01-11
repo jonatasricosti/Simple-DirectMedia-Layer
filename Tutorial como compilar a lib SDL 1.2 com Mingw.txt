@@ -1,0 +1,57 @@
+Tutorial de como instalar e compilar a lib SDL 1.2 com Mingw
+
+
+copie a pasta lib, bin, include do SDL para dentro da pasta do Mingw na mesma localização
+C:\MinGW
+
+crie um arquivo chamado compilar.bat e um main.cpp no seu projeto e esses são os comandos de compilação
+
+
+no arquivo, compilar.bat coloque
+
+set path=C:\MinGW\bin;%path%
+g++ -o main.exe main.cpp -lmingw32 -lSDLmain -lSDL -lSDL_image -lSDL_ttf -lSDL_mixer
+pause
+
+no arquivo, main.cpp coloque o código
+
+
+#include <SDL/SDL.h>
+
+SDL_Surface *tela = NULL;
+bool executando = true;
+SDL_Event evento;
+const int screen_width = 640;
+const int screen_height = 480;
+const int screen_bpp = 32;
+
+
+int main(int argc, char*args[])
+{
+SDL_Init(SDL_INIT_EVERYTHING);
+tela = SDL_SetVideoMode(screen_width,screen_height,screen_bpp,SDL_SWSURFACE);
+
+
+// game loop
+while(executando)
+{
+	while(SDL_PollEvent(&evento))
+	{
+		if(evento.type == SDL_QUIT)
+		{
+			executando = false;
+		}
+	}
+	
+	SDL_FillRect(tela,NULL,0x0000ff);
+	SDL_Flip(tela);
+}
+
+
+SDL_Quit();
+return 0;
+}
+
+
+pra compilar clique em compilar.bat
+nota: é preciso deixar as dlls do SDL na mesma pasta do projeto.

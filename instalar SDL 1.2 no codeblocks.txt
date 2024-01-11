@@ -1,0 +1,85 @@
+abra o CodeBlocks
+clique em Create a new project -> Empty project -> Next
+Project title: digite o nome do projeto -> Next-> Finish
+
+clique com o botão direito do mouse no nome do projeto
+Properties -> Project build options -> Linker settings
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDLmain -lSDL
+-lSDL_image só adicione isso se tiver a biblioteca
+-lSDL_mixer só adicione isso se tiver a biblioteca
+-lSDL_ttf   só adicione isso se tiver a biblioteca
+
+depois clique em
+Search directories
+
+Compiler
+adicione:
+C:\SDL-1.2.15\include\SDL
+keep this as as relative path?
+clique em não
+
+Linker
+adicione:
+C:\SDL-1.2.15\lib
+keep this as as relative path?
+clique em não
+
+vá em File -> New -> File -> C/C++ source -> Next ->Next
+marque Debug e Release
+em Filename with full path: dê um nome ao arquivo exemplo main.cpp
+
+teste esse código
+#include "SDL.h"
+
+int main(int argc, char*args[])
+{
+
+
+
+return 0;
+}
+
+copie a SDL.dll para a pasta do projeto
+
+///////////////////////////////////////////////////////////////////////////////////////////
+como instalar o SDL_image-devel-1.2.12-VC
+
+entre na pasta "SDL_image-1.2.12\include" copie SDL_image.h para a pasta include\SDL do SDL
+
+entre na pasta "SDL_image-1.2.12\lib\x86" copie SDL_image.lib para a pasta lib do SDL
+ainda na pasta "SDL_image-1.2.12\lib\x86" copie todas as dlls para a pasta bin do SDL
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDLmain -lSDL
+-lSDL_image
+
+///////////////////////////////////////////////////////////////////////////////////////////
+como instalar o SDL_mixer-devel-1.2.12-VC
+
+entre na pasta "SDL_mixer-1.2.12\include" copie SDL_mixer.h para a pasta include\SDL do SDL
+
+entre na pasta "SDL_mixer-1.2.12\lib\x86" copie SDL_mixer.lib para a pasta lib do SDL
+ainda na pasta "SDL_mixer-1.2.12\lib\x86" copie todas as dlls para a pasta bin do SDL
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDLmain -lSDL
+-lSDL_mixer
+
+///////////////////////////////////////////////////////////////////////////////////////////
+como instalar o SDL_ttf-devel-2.0.11-VC
+
+entre na pasta "SDL_ttf-2.0.11\include" copie SDL_ttf.h para a pasta include\SDL do SDL
+
+entre na pasta "SDL_ttf-2.0.11\lib\x86" copie SDL_ttf.lib para a pasta lib do SDL
+ainda na pasta "SDL_ttf-2.0.11\lib\x86" copie todas as dlls para a pasta bin do SDL
+zlib1.dll vai ser trocado
+
+-> Other linker options
+adicione:
+-lmingw32 -lSDLmain -lSDL
+-lSDL_ttf
