@@ -6,7 +6,7 @@ const int SCREEN_BPP = 32;
 SDL_Surface *tela = NULL;
 SDL_Event evento;
 
-// usee essa função pra carregar uma imagem bmp e deixa o fundo transparente
+// use essa função pra carregar uma imagem bmp e deixa o fundo transparente
 SDL_Surface *fundo_transparente(const char*filename, const Uint8 red, const Uint8 green, const Uint8 blue)
 {
     SDL_Surface *load = NULL;
@@ -76,7 +76,6 @@ int main(int argc, char*args[])
 SDL_Init(SDL_INIT_EVERYTHING);
 
 tela = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
-SDL_WM_SetCaption("Minha janela",NULL);
 
 LoadFiles();
 

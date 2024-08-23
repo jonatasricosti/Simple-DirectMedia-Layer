@@ -23,7 +23,6 @@ SDL_Init(SDL_INIT_EVERYTHING);
 SDL_putenv("SDL_VIDEO_WINDOW_POS=center"); // centraliza a janela ao abrir o programa
 tela = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
 
-SDL_WM_SetCaption("Minha janela",NULL);
 
 bool executando = true;
 // nosso game loop
