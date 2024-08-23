@@ -101,7 +101,7 @@ while(executando)
             executando = false;
         }
     }
-    SDL_FillRect(tela,NULL,0); // limpa a tela na corta preta
+    SDL_FillRect(tela,NULL,0); // limpa a tela na cor preta
 
 
     DrawText(60,80,whitefontImage,tela,"Eu gosto muito de estudar",16,32);
