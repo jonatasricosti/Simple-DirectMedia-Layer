@@ -1,0 +1,48 @@
+instalar SDL 1.2 no linux
+abrar o terminal e digite
+
+sudo apt-get install libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev
+
+
+compilar SDL 1.2 no linux
+
+crie um arquivo main.cpp com o código abaixo
+pra compilar abra o terminal na pasta onde está o arquivo main.cpp e digite
+
+g++ -o aplicativo main.cpp -lSDL
+
+você também pode criar um makefile se manjar de compilação
+
+#include <SDL/SDL.h>
+
+
+int main(int argc, char *argv[])
+{
+
+SDL_Init(SDL_INIT_EVERYTHING);
+SDL_Surface *tela = NULL;
+
+tela = SDL_SetVideoMode(640,480,32,SDL_SWSURFACE);
+
+bool executando = true;
+SDL_Event evento;
+
+// game loop
+while(executando)
+{
+    while(SDL_PollEvent(&evento))
+    {
+        if(evento.type == SDL_QUIT)
+        {
+            executando = false;
+        }
+    }
+
+    SDL_FillRect(tela, 0,0xff); // desenha retângulo azul do tamanho da tela
+    SDL_Flip(tela); // atualiza a tela
+}
+
+
+SDL_Quit();
+return 0;
+}
