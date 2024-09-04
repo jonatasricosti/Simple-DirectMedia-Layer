@@ -11,6 +11,19 @@ pra compilar abra o terminal na pasta onde está o arquivo main.cpp e digite
 
 g++ -o aplicativo main.cpp -lSDL
 
+se usar o SDL_mixer.h
+adicione -lSDL_mixer
+
+se usar o SDL_ttf.h
+adicione -lSDL_ttf
+
+se usar o SDL_image.h
+adicione -lSDL_image
+
+
+exemplo
+g++ -o aplicativo main.cpp -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
+
 você também pode criar um makefile se manjar de compilação
 
 #include <SDL/SDL.h>
