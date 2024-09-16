@@ -101,6 +101,43 @@ void DrawText2(int x, int y, SDL_Surface *source, SDL_Surface *destination, char
     }
 }
 
+// use essa função pra desenhar texto na tela com efeito de digitação
+void TypeEffect(int x, int y, int delay, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
+{
+    int coluna = 0;
+    int linha = 0;
+
+    static int tamanho = 0;
+
+    static int timer = 0;
+    timer++;
+    if(timer > delay)
+    {
+        tamanho = tamanho+1;
+        timer = 0;
+    }
+
+    if(tamanho >= strlen(texto))
+    {
+        tamanho = strlen(texto);
+    }
+
+	for(unsigned int i = 0; i < tamanho; i++)
+    {
+        if(texto[i] == '\n')
+        {
+            linha = linha + charSize; // mova pra baixo cada nova linha
+            coluna = 0; // coluna volta para o começo
+            continue; //Pule o resto do loop para a nova linha
+        }
+
+        DrawImageFrame(x+coluna*charSize, y+linha, source, destination, charSize, charSize, texto[i]-start);
+
+         // Move para a próxima coluna
+        coluna++;
+    }
+}
+
 int main(int argc, char*args[])
 {
 SDL_Init(SDL_INIT_EVERYTHING);
@@ -126,10 +163,7 @@ while(executando)
     }
     SDL_FillRect(tela,NULL,0); // limpa a tela na cor preta
 
-    char texto[] = "gosto de programar\ngosto de programar\ngosto de programar\ngosto de programar\n";
-
-
-    DrawText2(60,80,whitefontImage,tela,texto,16,32);
+    TypeEffect(0,80,150,yellowfontImage,tela,"Eu amo c++ porque com ele aprendi a criarz\nOs meus jogos",16,32);
     SDL_Flip(tela);
 }
 
@@ -138,3 +172,4 @@ CloseFiles();
 SDL_Quit();
 return 0;
 }
+
