@@ -103,5 +103,6 @@ while(executando)
 CloseFiles();
 TTF_Quit(); // encerra o ttf
 SDL_Quit();
+return 0;
 }
 
