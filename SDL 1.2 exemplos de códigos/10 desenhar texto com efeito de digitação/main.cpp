@@ -1,4 +1,7 @@
 #include <SDL.h>
+#include <string> // pra usar string
+
+using namespace std; // pra não escrever std::
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -102,7 +105,7 @@ void DrawText2(int x, int y, SDL_Surface *source, SDL_Surface *destination, char
 }
 
 // use essa função pra desenhar texto na tela com efeito de digitação
-void TypeEffect(int x, int y, int delay, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
+void TypeEffect(int x, int y, int delay, SDL_Surface *source, SDL_Surface *destination, string text, int charSize, int Ascii_Value)
 {
     int coluna = 0;
     int linha = 0;
@@ -117,21 +120,21 @@ void TypeEffect(int x, int y, int delay, SDL_Surface *source, SDL_Surface *desti
         timer = 0;
     }
 
-    if(tamanho >= strlen(texto))
+    if(tamanho >= text.length())
     {
-        tamanho = strlen(texto);
+        tamanho = text.length();
     }
 
 	for(unsigned int i = 0; i < tamanho; i++)
     {
-        if(texto[i] == '\n')
+        if(text[i] == '\n')
         {
             linha = linha + charSize; // mova pra baixo cada nova linha
             coluna = 0; // coluna volta para o começo
-            continue; //Pule o resto do loop para a nova linha
+            continue; // Pule o resto do loop para a nova linha
         }
 
-        DrawImageFrame(x+coluna*charSize, y+linha, source, destination, charSize, charSize, texto[i]-start);
+        DrawImageFrame(x+coluna*charSize, y+linha, source, destination, charSize, charSize, text[i]-Ascii_Value);
 
          // Move para a próxima coluna
         coluna++;
@@ -144,7 +147,6 @@ SDL_Init(SDL_INIT_EVERYTHING);
 SDL_putenv("SDL_VIDEO_WINDOW_POS=center"); // centraliza a janela ao abrir o programa
 tela = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
 
-SDL_WM_SetCaption("Minha janela",NULL);
 
 LoadFiles();
 
@@ -163,7 +165,7 @@ while(executando)
     }
     SDL_FillRect(tela,NULL,0); // limpa a tela na cor preta
 
-    TypeEffect(0,80,150,yellowfontImage,tela,"Eu amo c++ porque com ele aprendi a criarz\nOs meus jogos",16,32);
+    TypeEffect(16,80,150,yellowfontImage,tela,"Eu amo c++ porque com c++\nEu aprendi a criar\nOs meus jogos",16,32);
     SDL_Flip(tela);
 }
 

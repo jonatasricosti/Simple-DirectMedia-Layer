@@ -1,4 +1,7 @@
 #include <SDL.h>
+#include <string> // pra usar string
+
+using namespace std; // pra não escrever std::
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -69,20 +72,20 @@ void DrawImageFrame(int x, int y, SDL_Surface *source, SDL_Surface *destination,
 }
 
 // use essa função pra desenhar texto na tela
-void DrawText(int x, int y, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
+void DrawText(int x, int y, SDL_Surface *source, SDL_Surface *destination, string text, int charSize, int Ascii_Value)
 {
-	for(unsigned int i = 0; i < strlen(texto); i++)
+	for(unsigned int i = 0; i < text.length(); i++)
     {
-        DrawImageFrame(x+i*charSize, y, source, destination, charSize, charSize, texto[i]-start);
+        DrawImageFrame(x+i*charSize, y, source, destination, charSize, charSize, text[i]-Ascii_Value);
     }
 }
 
 int main(int argc, char*args[])
 {
 SDL_Init(SDL_INIT_EVERYTHING);
-
+SDL_putenv("SDL_VIDEO_WINDOW_POS=center"); // centraliza a janela ao abrir o programa
 tela = SDL_SetVideoMode(SCREEN_WIDTH,SCREEN_HEIGHT,SCREEN_BPP,SDL_SWSURFACE);
-SDL_WM_SetCaption("Minha janela",NULL);
+
 
 LoadFiles();
 
@@ -128,3 +131,4 @@ CloseFiles();
 SDL_Quit();
 return 0;
 }
+

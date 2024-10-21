@@ -116,21 +116,49 @@ SDL_Surface* LoadPPM_P3(string filename)
 }
 
 
+// use essa função pra carregar imagem PPM e deixa o fundo transparente
+SDL_Surface *fundo_transparentePPM(const char*filename, Uint32 red, Uint32 green, Uint32 blue)
+{
+    SDL_Surface *otimizado = NULL;
+    SDL_Surface *load = NULL;
+
+    load = LoadPPM_P3(filename);
+
+    if(load != NULL)
+    {
+        otimizado = SDL_DisplayFormat(load);
+        SDL_FreeSurface(load);
+
+        if(otimizado != NULL)
+        {
+            SDL_SetColorKey(otimizado, SDL_SRCCOLORKEY, SDL_MapRGB(otimizado->format, red, green, blue));
+        }
+    }
+
+    return otimizado;
+}
+
+
 
 // objeto ponteiro da struct SDL_Surface
 SDL_Surface *mxImage = NULL;
+
+SDL_Surface *mxImage2 = NULL;
 
 // carrega arquivos
 void LoadFiles()
 {
     Remove_PPM_P3_Comments("mx.ppm", "megamanx.ppm");
     mxImage = LoadPPM_P3("megamanx.ppm");
+    mxImage2 = fundo_transparentePPM("megamanx.ppm", 0,255,255);
+
 }
 
 // fecha arquivos
 void CloseFiles()
 {
     SDL_FreeSurface(mxImage);
+    SDL_FreeSurface(mxImage2);
 }
 
 // use essa função pra desenhar uma imagem na tela
@@ -167,9 +195,12 @@ while(executando)
             executando = false;
         }
     }
-    
+
+    SDL_FillRect(tela, 0, 0xffffff); // limpa a tela na cor branca 0xffffff
     DrawImage(0,0,mxImage,tela);
-    
+
+    DrawImage(100,200,mxImage2,tela);
+
     SDL_Flip(tela); // atualiza a tela
 }
 

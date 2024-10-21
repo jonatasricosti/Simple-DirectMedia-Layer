@@ -1,4 +1,7 @@
 #include <SDL.h>
+#include <string> // pra usar string
+
+using namespace std; // pra não escrever std::
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -80,21 +83,21 @@ void DrawText(int x, int y, SDL_Surface *source, SDL_Surface *destination, char 
 
 // use essa função pra desenhar texto na tela com quebra de linnha
 // essa função pula linha se usar o caractere \n
-void DrawText2(int x, int y, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
+void DrawText2(int x, int y, SDL_Surface *source, SDL_Surface *destination, string text, int charSize, int Ascii_Value)
 {
     int coluna = 0;
     int linha = 0;
 
-	for(unsigned int i = 0; i < strlen(texto); i++)
+	for(unsigned int i = 0; i < text.length(); i++)
     {
-        if(texto[i] == '\n')
+        if(text[i] == '\n')
         {
             linha = linha + charSize; // mova pra baixo cada nova linha
             coluna = 0; // coluna volta para o começo
             continue; //Pule o resto do loop para a nova linha
         }
 
-        DrawImageFrame(x+coluna*charSize, y+linha, source, destination, charSize, charSize, texto[i]-start);
+        DrawImageFrame(x+coluna*charSize, y+linha, source, destination, charSize, charSize, text[i]-Ascii_Value);
 
          // Move para a próxima coluna
         coluna++;
@@ -126,10 +129,8 @@ while(executando)
     }
     SDL_FillRect(tela,NULL,0); // limpa a tela na cor preta
 
-    char texto[] = "gosto de programar\ngosto de programar\ngosto de programar\ngosto de programar\n";
 
-
-    DrawText2(60,80,whitefontImage,tela,texto,16,32);
+    DrawText2(60,80,whitefontImage,tela,"gosto de programar\ngosto de programar\ngosto de programar\ngosto de programar\n",16,32);
     SDL_Flip(tela);
 }
 
@@ -138,3 +139,4 @@ CloseFiles();
 SDL_Quit();
 return 0;
 }
+
