@@ -107,6 +107,8 @@ while(executando)
     SDL_Surface *rotateImage = rotozoomSurface(setaImage, angle, 1.0, 0);
 
     DrawImage((screen_width - rotateImage->w)/2,(screen_height - rotateImage->h)/2,rotateImage,tela);
+    
+    SDL_FreeSurface(rotateImage);
 
     SDL_Flip(tela); // atualiza a tela
 
