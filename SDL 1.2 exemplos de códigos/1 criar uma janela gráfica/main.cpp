@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a como criar uma janela no SDL 1.2
+
 #include <SDL.h>
 
 const int SCREEN_WIDTH = 640;

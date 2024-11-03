@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a desenhar uma imagem cortada na tela
+
 #include <SDL.h>
 
 const int SCREEN_WIDTH = 640;

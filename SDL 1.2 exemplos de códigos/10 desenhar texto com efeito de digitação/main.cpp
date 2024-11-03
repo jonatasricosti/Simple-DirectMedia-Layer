@@ -1,3 +1,8 @@
+/*
+Nesse tutorial, vamos aprender a desenhar um texto na tela
+com fonte bmp e quebra de linha e efeito de digitação
+*/
+
 #include <SDL.h>
 #include <string> // pra usar string
 
@@ -71,38 +76,6 @@ void DrawImageFrame(int x, int y, SDL_Surface *source, SDL_Surface *destination,
     SDL_BlitSurface(source, &corte, destination, &mover);
 }
 
-// use essa função pra desenhar texto na tela
-void DrawText(int x, int y, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
-{
-	for(unsigned int i = 0; i < strlen(texto); i++)
-    {
-        DrawImageFrame(x+i*charSize, y, source, destination, charSize, charSize, texto[i]-start);
-    }
-}
-
-
-// use essa função pra desenhar texto na tela com quebra de linnha
-// essa função pula linha se usar o caractere \n
-void DrawText2(int x, int y, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
-{
-    int coluna = 0;
-    int linha = 0;
-
-	for(unsigned int i = 0; i < strlen(texto); i++)
-    {
-        if(texto[i] == '\n')
-        {
-            linha = linha + charSize; // mova pra baixo cada nova linha
-            coluna = 0; // coluna volta para o começo
-            continue; //Pule o resto do loop para a nova linha
-        }
-
-        DrawImageFrame(x+coluna*charSize, y+linha, source, destination, charSize, charSize, texto[i]-start);
-
-         // Move para a próxima coluna
-        coluna++;
-    }
-}
 
 // use essa função pra desenhar texto na tela com efeito de digitação
 void TypeEffect(int x, int y, int delay, SDL_Surface *source, SDL_Surface *destination, string text, int charSize, int Ascii_Value)

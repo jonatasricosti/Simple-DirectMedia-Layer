@@ -1,3 +1,11 @@
+// Nesse tutorial, vamos fazer um código para o framerate
+
+/*
+O framerate serve para o jogo ter o mesmo tempo de execução em qualquer computador
+Se você não programar o framerate, o jogo vai ser executado na maior velocidade
+possível em outros computadores. Isso deixa o jogo injogável.
+*/
+
 #include <SDL.h>
 
 const int SCREEN_WIDTH = 640;
@@ -6,11 +14,6 @@ const int SCREEN_BPP = 32;
 SDL_Surface *tela = NULL;
 SDL_Event evento;
 
-/*
-O framerate serve para o jogo ter o mesmo tempo de execução em qualquer computador
-Se você não programar o framerate, o jogo vai ser executado na maior velocidade
-possível em outros computadores. Isso deixa o jogo injogável.
-*/
 
 // variáveis para o framerate
 Uint32 start = 0;

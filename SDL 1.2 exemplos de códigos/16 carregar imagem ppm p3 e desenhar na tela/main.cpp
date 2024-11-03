@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a carregar uma imagem ppm p3 e desenhar na tela
+
 #include <SDL.h>
 #include <sstream>
 #include <fstream>
@@ -8,6 +10,17 @@ const int screen_height = 480;
 const int screen_bpp = 32;
 SDL_Surface *tela = NULL;
 SDL_Event evento;
+
+
+// use essa função pra desenhar um pixel na surface
+void DrawPixel( SDL_Surface *surface, int x, int y, Uint32 pixel)
+{
+	// Converta os pixels para 32 bits
+    Uint32 *pixels = (Uint32 *)surface->pixels;
+
+    //Defina o pixel
+    pixels[ ( y * surface->w ) + x ] = pixel;
+}
 
 
 // use essa função pra remover comentários de uma imagem ppm p3
@@ -37,18 +50,6 @@ int RGB24(int red, int green, int blue)
     return ((red & 255) << 16) + ((green & 255) << 8) + (blue & 255);
 }
 
-
-// use essa função pra mudar um pixel de uma SDL_Surface
-void change_pixel(SDL_Surface *surface, int x, int y, Uint32 color)
-{
-    SDL_Rect quadro;
-    quadro.x = x;
-    quadro.y = y;
-    quadro.w = 1; // tamanho de um pixel
-    quadro.h = 1; // tamanho de um pixel
-
-    SDL_FillRect(surface, &quadro, color);
-}
 
 /*
 use essa função pra carregar uma imagem ppm p3
@@ -105,7 +106,7 @@ SDL_Surface* LoadPPM_P3(string filename)
         {
             // ao invés de desenhar pixel na tela
             // vamos colocar pixel na nossa surface
-            change_pixel(NewImage, x,y, vram[x+y*image_width]);
+            DrawPixel(NewImage, x,y, vram[x+y*image_width]);
         }
     }
 

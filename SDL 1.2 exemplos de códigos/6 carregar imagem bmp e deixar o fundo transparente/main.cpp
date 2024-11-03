@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a desenhar uma imagem na tela com fundo transparente
+
 #include <SDL.h>
 
 const int SCREEN_WIDTH = 640;

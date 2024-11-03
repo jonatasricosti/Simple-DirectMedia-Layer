@@ -1,3 +1,6 @@
+// Nesse tutorial, vamos aprender a desenhar um texto na tela com fonte ttf
+
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 

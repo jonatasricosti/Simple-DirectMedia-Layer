@@ -1,3 +1,4 @@
+// Nesse tutorial, vamos aprender a tirar foto da tela e salvar em bmp
 #include <SDL.h>
 
 const int screen_width = 640;
@@ -42,7 +43,7 @@ while(executando)
 }
 
 
-SDL_SaveBMP(tela, "foto.bmp"); // tira fota da tela
+SDL_SaveBMP(tela, "foto.bmp"); // tira fota da tela ao fechar o programa
 
 SDL_Quit();
 return 0;

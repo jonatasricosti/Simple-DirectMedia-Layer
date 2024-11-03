@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a desenhar um texto no centro da tela com fonte ttf
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 

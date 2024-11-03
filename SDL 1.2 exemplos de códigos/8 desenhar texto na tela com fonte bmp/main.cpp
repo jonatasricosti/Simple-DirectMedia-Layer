@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a desenhar um texto na tela com fonte bmp
+
 #include <SDL.h>
 #include <string> // pra usar string
 

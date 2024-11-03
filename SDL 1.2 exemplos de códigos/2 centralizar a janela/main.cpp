@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a centralizar a janela ao abrir o programa
+
 #include <SDL.h>
 
 const int SCREEN_WIDTH = 640;

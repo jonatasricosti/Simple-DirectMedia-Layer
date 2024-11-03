@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a converter a tela em uma imagem ppm p3
+
 #include <SDL.h>
 #include <fstream>
 #include <sstream>

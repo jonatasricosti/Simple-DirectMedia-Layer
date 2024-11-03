@@ -1,10 +1,13 @@
-#include <SDL.h>
-#include <SDL_image.h>
+// Nesse tutorial, vamos aprender a desenhar outros formatos de imagem na tela
 
 /*
 por padrão o SDL só carrega imagens bmp,
 mas com o SDL_image.h podemos carregar outros formatos de imagens
 */
+
+#include <SDL.h>
+#include <SDL_image.h>
+
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;

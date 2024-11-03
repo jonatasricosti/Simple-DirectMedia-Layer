@@ -1,3 +1,6 @@
+// Nesse tutorial, vamos aprender a desenhar um pixel na surface
+// pode ser na tela ou em uma imagem
+
 #include <SDL.h>
 
 const int screen_width = 640;
@@ -6,7 +9,7 @@ const int screen_bpp = 32;
 SDL_Surface *tela = NULL;
 SDL_Event evento;
 
-// use essa função pra desenhar um pixel na tela
+// use essa função pra desenhar um pixel na surface
 void DrawPixel( SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
 	// Converta os pixels para 32 bits
@@ -17,7 +20,7 @@ void DrawPixel( SDL_Surface *surface, int x, int y, Uint32 pixel)
 }
 
 
-// use essa função pra desenhar pixel na tela
+// use essa função pra desenhar pixel na surface
 void DrawPixel(SDL_Surface *surface, int x, int y, Uint8 r, Uint8 g, Uint8 b)
 {
     if(SDL_MUSTLOCK(surface))
@@ -64,12 +67,11 @@ while(executando)
     }
 
 
-     // desenhe pixels
-     for(int i = 0; i < 100; i++)
+    // desenhe pixels na surface tela
+    for(int i = 0; i < 100; i++)
     {
         DrawPixel(tela, rand()%800, rand()%600, rand()%256, rand()%256, rand()%256);
     }
-
 
     SDL_Flip(tela); // atualiza a tela
 }

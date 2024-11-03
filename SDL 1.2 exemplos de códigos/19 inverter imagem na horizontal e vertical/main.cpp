@@ -1,5 +1,5 @@
 /*
-Nesse tutorial, vou ensinar a como inverter uma imagem
+Nesse tutorial, vamos aprender a como inverter uma imagem
 na horizontal e na vertical com código
 o SDL 1.2 não tem uma função pra inverter imagem por isso temos que criar uma do zero
 já o SDL 2 tem

@@ -1,3 +1,6 @@
+// Nesse tutorial, vamos aprender a extrair um pixel da surface
+// pode ser na tela ou em uma imagem
+
 #include <SDL.h>
 #include <fstream>
 using namespace std; // pra não escrever std::
@@ -8,7 +11,7 @@ const int screen_bpp = 32;
 SDL_Surface *tela = NULL;
 SDL_Event evento;
 
-// use essa função pra desenhar um pixel na tela
+// use essa função pra desenhar um pixel na surface
 void DrawPixel( SDL_Surface *surface, int x, int y, Uint32 pixel)
 {
 	// Converta os pixels para 32 bits
@@ -19,7 +22,7 @@ void DrawPixel( SDL_Surface *surface, int x, int y, Uint32 pixel)
 }
 
 
-// use essa função pra desenhar pixel na tela
+// use essa função pra desenhar pixel na surface
 void DrawPixel(SDL_Surface *surface, int x, int y, Uint8 r, Uint8 g, Uint8 b)
 {
     if(SDL_MUSTLOCK(surface))
@@ -44,7 +47,7 @@ void DrawPixel(SDL_Surface *surface, int x, int y, Uint8 r, Uint8 g, Uint8 b)
 }
 
 
-// use essa função pra extrair um pixel da tela
+// use essa função pra extrair um pixel da surface
 // essa função pega a posição x,y do pixel e returna o número da cor
 Uint32 getpixel(SDL_Surface *surface, int x, int y)
 {
@@ -79,7 +82,7 @@ switch (bpp)
 }
 
 
-// use essa função pra extrair um pixel da tela
+// use essa função pra extrair um pixel da surface
 // essa função pega a posição x,y do pixel e returna o número da cor
 Uint32 get_pixel32( SDL_Surface *surface, int x, int y )
 {

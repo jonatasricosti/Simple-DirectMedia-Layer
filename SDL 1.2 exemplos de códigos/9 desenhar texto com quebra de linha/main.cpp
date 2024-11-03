@@ -1,3 +1,5 @@
+// Nesse tutorial, vamos aprender a desenhar um texto na tela com fonte bmp e quebra de linha
+
 #include <SDL.h>
 #include <string> // pra usar string
 
@@ -71,19 +73,10 @@ void DrawImageFrame(int x, int y, SDL_Surface *source, SDL_Surface *destination,
     SDL_BlitSurface(source, &corte, destination, &mover);
 }
 
-// use essa função pra desenhar texto na tela
-void DrawText(int x, int y, SDL_Surface *source, SDL_Surface *destination, char texto[], int charSize, int start)
-{
-	for(unsigned int i = 0; i < strlen(texto); i++)
-    {
-        DrawImageFrame(x+i*charSize, y, source, destination, charSize, charSize, texto[i]-start);
-    }
-}
-
 
 // use essa função pra desenhar texto na tela com quebra de linnha
 // essa função pula linha se usar o caractere \n
-void DrawText2(int x, int y, SDL_Surface *source, SDL_Surface *destination, string text, int charSize, int Ascii_Value)
+void DrawTextWithLineBreak(int x, int y, SDL_Surface *source, SDL_Surface *destination, string text, int charSize, int Ascii_Value)
 {
     int coluna = 0;
     int linha = 0;
@@ -130,7 +123,7 @@ while(executando)
     SDL_FillRect(tela,NULL,0); // limpa a tela na cor preta
 
 
-    DrawText2(60,80,whitefontImage,tela,"gosto de programar\ngosto de programar\ngosto de programar\ngosto de programar\n",16,32);
+    DrawTextWithLineBreak(60,80,whitefontImage,tela,"gosto de programar\ngosto de programar\ngosto de programar\ngosto de programar\n",16,32);
     SDL_Flip(tela);
 }
 
